@@ -1,13 +1,14 @@
 export default class Camera {
-  constructor({ querySelector }) {
-    if (querySelector) {
-      this.video = document.querySelector(querySelector);
-      return;
-    }
+  video;
 
-    this.video = document.createElement('video');
+  constructor({ querySelector }) {
+    this.video = document.querySelector(querySelector);
+
+    if (!this.video) {
+      this.video = document.createElement('video');
+    }
   }
-  static async init({ querySelector }) {
+  static async initialize({ querySelector }) {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw new Error(
         `Browser API navigator.mediaDevices.getUserMedia not available`
@@ -16,17 +17,12 @@ export default class Camera {
 
     const videoConfig = {
       audio: false,
-      video: {
-        width: globalThis.screen.availWidth,
-        height: globalThis.screen.availHeight,
-        frameRate: {
-          ideal: 60,
-        },
-      },
+      video: {},
     };
 
     const stream = await navigator.mediaDevices.getUserMedia(videoConfig);
     const camera = new Camera({ querySelector });
+    // debugger;
     camera.video.srcObject = stream;
     // debug reasons!
     // camera.video.height = 240
