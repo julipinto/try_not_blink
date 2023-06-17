@@ -7,12 +7,19 @@
     <link href="./styles/index.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Tente não piscar MENU</h1>
-    <button id="btn-start" disabled>
-      <!-- onclick="window.location.href = './partida.html'" -->
-      Carregando bibliotecas de detecção ...
-    </button>
-    <video id="video-frame"></video>
+    <div class="container">
+      <!-- <button id="btn-start" onclick="window.location.href = './partida.html'">
+        Começar
+      </button> -->
+      <h1 class="title">Tente não piscar</h1>
+      <!-- <button id="btn-start" disabled>
+        Carregando bibliotecas de detecção ...
+      </button> -->
+
+      <div class="box">
+        <video class="box" id="video-frame"></video>
+      </div>
+    </div>
 
     <script defer type="module">
       import Factory from './blink-detection/factory.js';

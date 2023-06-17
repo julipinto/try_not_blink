@@ -56,4 +56,8 @@ export default class Controller {
     this.#running = true;
     this.loop();
   }
+
+  onBtnStopClick() {
+    this.#running = false;
+  }
 }
