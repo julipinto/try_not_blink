@@ -109,3 +109,15 @@ body {
   align-items: center;
   gap: 10px;
 }
+
+.header_dialog {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+dialog {
+  border-radius: 20px;
+  border: 0.1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

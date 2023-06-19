@@ -15,6 +15,8 @@ export default class View {
   constructor() {
     let bntHelp = document.querySelector('#btnHelp');
     let dialogHelp = document.querySelector('#dialogHelp');
+    let closeDialog = document.querySelector('#closeDialog');
+
     bntHelp.addEventListener('click', function () {
       let isOpen = dialogHelp.hasAttribute('open');
       if (!isOpen) {
@@ -22,6 +24,10 @@ export default class View {
       } else {
         dialogHelp.close();
       }
+    });
+
+    closeDialog.addEventListener('click', function () {
+      dialogHelp.close();
     });
   }
 
