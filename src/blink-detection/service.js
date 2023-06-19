@@ -45,11 +45,12 @@ export default class Service {
   }
 
   async handBlinked(video) {
-    // console.debug(this.#detector);
     const predictions = await this.#estimateFaces(video);
     if (!predictions.length) return false;
 
     // IF PREDICTIONS != 2, ALERT USER
+    if (predictions.length !== 2)
+      return { error: 'Não foi encontrado 2 faces para o jogo.' };
 
     let mostLeft = Math.min(
       this.#middleBounding(predictions[0].boundingBox).x,
@@ -71,7 +72,7 @@ export default class Service {
       if (!shouldRun()) continue;
 
       // if (prediction.boundingBox.topLeft[1] === mostLeft) return blinked;
-      return blinked;
+      return { blinked };
     }
 
     return false;

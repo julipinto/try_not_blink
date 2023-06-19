@@ -27,15 +27,22 @@ export default class View {
 
   enableGame() {
     this.#btnStart.disabled = false;
-    this.#hideBanner();
+    this.hideBanner();
   }
 
-  #hideBanner() {
-    this.#banner.style.display = 'none';
+  hideBanner() {
+    if (this.#banner.style.display !== 'none') {
+      this.#banner.style.display = 'none';
+    }
   }
 
   loadingFirstDetection() {
     this.#banner.textContent = 'Carregando detecção facial...';
+  }
+
+  bannerMessage(msg) {
+    this.#banner.style.display = 'block';
+    this.#banner.textContent = msg;
   }
 
   setIconPlay() {

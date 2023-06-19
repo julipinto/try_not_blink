@@ -16,7 +16,7 @@ console.log('tf-worker model loaded!');
 postMessage({ status: 'IMPORT READY' });
 
 onmessage = async ({ data: video }) => {
-  const blinked = await service.handBlinked(video);
+  const result = await service.handBlinked(video);
 
   if (!firstDetection) {
     firstDetection = true;
@@ -24,5 +24,10 @@ onmessage = async ({ data: video }) => {
     return;
   }
 
-  postMessage({ status: 'BLINK', blinked });
+  if (result.error) {
+    postMessage({ status: 'ERROR', error: result.error });
+    return;
+  }
+
+  postMessage({ status: 'BLINK', blinked: result.blinked });
 };

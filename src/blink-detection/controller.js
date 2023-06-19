@@ -26,7 +26,10 @@ export default class Controller {
       } else if (data.status === 'READY') {
         isReady = true;
         this.#view.enableGame();
+      } else if (data.status === 'ERROR') {
+        this.#view.bannerMessage(data.error);
       } else if (data.status === 'BLINK') {
+        this.#view.hideBanner();
         if (!this.#running) return;
         const { blinked } = data;
         if (blinked) console.log('BLINKED');
