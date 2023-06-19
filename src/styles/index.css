@@ -62,7 +62,6 @@ body {
     rgba(255, 0, 0, 1) 48%,
     rgba(0, 61, 255, 1) 52%
   );
-  /* transform: translate3d(0, 0, 0) scale(1); */
   filter: blur(20px);
   opacity: var(0.7);
   transition: opacity 0.3s;
@@ -79,11 +78,7 @@ body {
   background: inherit;
 }
 
-#btn-start {
-  /* position: absolute; */
-  /* top: 50%; */
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%); */
+.btn {
   background-color: transparent;
   border: none;
   font-size: 2rem;
@@ -100,10 +95,17 @@ body {
   font-size: 1.6rem;
   padding: 20px;
   z-index: 10;
+  animation: fadeInAnimation 3s ease-in-out infinite;
 }
 
 .header {
   width: 95%;
   display: flex;
   justify-content: space-between;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

@@ -70,7 +70,8 @@ export default class Service {
       if (!blinked) continue;
       if (!shouldRun()) continue;
 
-      if (prediction.boundingBox.topLeft[1] === mostLeft) return blinked;
+      // if (prediction.boundingBox.topLeft[1] === mostLeft) return blinked;
+      return blinked;
     }
 
     return false;
