@@ -1,5 +1,5 @@
 import { debouncer } from '../utils/debouncer.js';
-const shouldRun = debouncer({ timerDelay: 500 });
+const shouldRun = debouncer({ timerDelay: 350 });
 
 const EAR_THRESHOLD = 0.27;
 
@@ -36,14 +36,6 @@ export default class Service {
     );
   }
 
-  #middleBounding(boundingBox) {
-    if (!boundingBox) return [Infinity, Infinity];
-    const [y1, x1] = boundingBox.topLeft;
-    const [y2, x2] = boundingBox.bottomRight;
-
-    return { x: (x2 - x1) / 2, y: (y1 - y2) / 2 };
-  }
-
   async handBlinked(video) {
     const predictions = await this.#estimateFaces(video);
     if (!predictions.length) return false;
@@ -53,9 +45,11 @@ export default class Service {
       return { error: 'Não foi encontrado 2 faces para o jogo.' };
 
     let mostLeft = Math.min(
-      this.#middleBounding(predictions[0].boundingBox).x,
-      this.#middleBounding(predictions[1]?.boundingBox).x || Infinity
+      predictions[0].annotations.noseTip[0][0],
+      predictions[1].annotations.noseTip[0][0]
     );
+
+    const blinks = new Set();
 
     for (const prediction of predictions) {
       // Right eye parameters
@@ -71,8 +65,20 @@ export default class Service {
       if (!blinked) continue;
       if (!shouldRun()) continue;
 
-      // if (prediction.boundingBox.topLeft[1] === mostLeft) return blinked;
-      return { blinked };
+      let isLeft = mostLeft === prediction.annotations.noseTip[0][0];
+      blinks.add(isLeft ? 'left' : 'right');
+    }
+
+    if (blinks.size === 2) {
+      return { blinked: true, who: 'both' };
+    }
+
+    if (blinks.has('left')) {
+      return { blinked: true, who: 'left' };
+    }
+
+    if (blinks.has('right')) {
+      return { blinked: true, who: 'right' };
     }
 
     return false;

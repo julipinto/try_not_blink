@@ -9,8 +9,6 @@ export default class View {
 
   #eyep1 = document.querySelector('#eyep1');
   #eyep2 = document.querySelector('#eyep2');
-  #dialogHelp = document.querySelector('#dialogHelp');
-  // #btnHelp = document.querySelector('#btnHelp');
 
   constructor() {
     let bntHelp = document.querySelector('#btnHelp');

@@ -29,5 +29,14 @@ onmessage = async ({ data: video }) => {
     return;
   }
 
-  postMessage({ status: 'BLINK', blinked: result.blinked });
+  if (!result) {
+    postMessage({ status: 'NO BLINK' });
+    return;
+  }
+
+  postMessage({
+    status: 'BLINK',
+    blinked: result.blinked,
+    who: result.who,
+  });
 };

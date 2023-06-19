@@ -28,12 +28,17 @@ export default class Controller {
         this.#view.enableGame();
       } else if (data.status === 'ERROR') {
         this.#view.bannerMessage(data.error);
-      } else if (data.status === 'BLINK') {
+        this.#stop();
+      } else if (data.status === 'NO BLINK') {
         this.#view.hideBanner();
         if (!this.#running) return;
-        const { blinked } = data;
-        if (blinked) console.log('BLINKED');
         this.loop();
+      } else if (data.status === 'BLINK') {
+        // this.#view.hideBanner();
+        const { blinked, who } = data;
+        if (blinked) console.log('BLINKED', who);
+        this.#stop();
+        // this.loop();
       }
     };
 
@@ -57,20 +62,20 @@ export default class Controller {
 
   onBtnStartToggle() {
     if (this.#running) {
-      this.onBtnStopClick();
+      this.#stop();
     } else {
-      this.onBtnStartClick();
+      this.#play();
     }
   }
 
-  onBtnStartClick() {
+  #play() {
     this.#running = true;
     this.#view.setIconPause();
     // TIMER TO START THE GAME
     this.loop();
   }
 
-  onBtnStopClick() {
+  #stop() {
     this.#running = false;
     this.#view.setIconPlay();
   }
