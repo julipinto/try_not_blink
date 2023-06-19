@@ -13,6 +13,22 @@ body {
   object-fit: cover;
 
   margin-left: 20px;
+  background-color: white;
+
+  /* animate with fadeInAnimation during 3s in a loop*/
+  animation: fadeInAnimation 3s ease-in-out infinite;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .not-playing {
@@ -61,4 +77,33 @@ body {
   bottom: 0;
   left: 0;
   background: inherit;
+}
+
+#btn-start {
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 1);
+  font-size: 1.6rem;
+  padding: 20px;
+  z-index: 10;
+}
+
+.header {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
 }

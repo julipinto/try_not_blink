@@ -8,7 +8,7 @@ export default class Controller {
     this.#view = view;
     this.#camera = camera;
     this.#worker = this.#configureWorker(worker);
-    this.#view.configureOnBtnClick(this.onBtnStartClick.bind(this));
+    this.#view.configureOnBtnClick(this.onBtnStartToggle.bind(this));
     this.#running = false;
   }
 
@@ -52,12 +52,23 @@ export default class Controller {
     return img;
   }
 
+  onBtnStartToggle() {
+    if (this.#running) {
+      this.onBtnStopClick();
+    } else {
+      this.onBtnStartClick();
+    }
+  }
+
   onBtnStartClick() {
     this.#running = true;
+    this.#view.setIconPause();
+    // TIMER TO START THE GAME
     this.loop();
   }
 
   onBtnStopClick() {
     this.#running = false;
+    this.#view.setIconPlay();
   }
 }

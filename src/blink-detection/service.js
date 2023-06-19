@@ -50,17 +50,11 @@ export default class Service {
     if (!predictions.length) return false;
 
     // IF PREDICTIONS != 2, ALERT USER
-    // let mostLeft = Math.min(
-    //   predictions[0].boundingBox.topLeft[1],
-    //   predictions[1]?.boundingBox.topLeft[1] || Infinity
-    // );
-    console.log(predictions[0].boundingBox);
+
     let mostLeft = Math.min(
       this.#middleBounding(predictions[0].boundingBox).x,
       this.#middleBounding(predictions[1]?.boundingBox).x || Infinity
     );
-
-    console.log('mostLeft: ', mostLeft);
 
     for (const prediction of predictions) {
       // Right eye parameters
@@ -76,10 +70,7 @@ export default class Service {
       if (!blinked) continue;
       if (!shouldRun()) continue;
 
-      if (prediction.boundingBox.topLeft[1] === mostLeft)
-        console.log('mostLeft: ', mostLeft);
-
-      return blinked;
+      if (prediction.boundingBox.topLeft[1] === mostLeft) return blinked;
     }
 
     return false;
