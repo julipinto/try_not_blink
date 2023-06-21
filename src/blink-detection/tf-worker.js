@@ -31,7 +31,6 @@ onmessage = async ({ data: video }) => {
   }
 
   if (!result) {
-    console.log('no blink');
     postMessage({ status: 'NO BLINK' });
     return;
   }

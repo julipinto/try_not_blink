@@ -1,7 +1,8 @@
 import { debouncer } from '../utils/debouncer.js';
 const shouldRun = debouncer({ timerDelay: 100 });
 
-const EAR_THRESHOLD = 0.27;
+// const EAR_THRESHOLD = 0.27;
+const EAR_THRESHOLD = 0.4;
 
 export default class Service {
   #faceLandmarksDetection;
@@ -15,7 +16,7 @@ export default class Service {
   static async initialize({ faceLandmarksDetection }) {
     const detector = await faceLandmarksDetection.load(
       faceLandmarksDetection.SupportedPackages.mediapipeFacemesh,
-      { maxFaces: 2 } // MUDAR ISSO AQUI
+      { maxFaces: 2 }
     );
 
     return new Service({ faceLandmarksDetection, detector });
@@ -66,7 +67,7 @@ export default class Service {
       // True if the eye is closed
       const blinked = leftEAR <= EAR_THRESHOLD || rightEAR <= EAR_THRESHOLD;
       if (!blinked) continue;
-      if (!shouldRun()) continue;
+      // if (!shouldRun()) continue;
 
       let isLeft = mostLeft === prediction.annotations.noseTip[0][0];
       blinks.add(isLeft ? 'esquerda' : 'direita');

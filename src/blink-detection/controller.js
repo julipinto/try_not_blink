@@ -71,7 +71,8 @@ export default class Controller {
     }
   }
 
-  #play() {
+  async #play() {
+    await this.#countdown();
     this.#running = true;
     this.#view.setIconPause();
     // TIMER TO START THE GAME
@@ -81,5 +82,21 @@ export default class Controller {
   #stop() {
     this.#running = false;
     this.#view.setIconPlay();
+  }
+
+  #delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async #countdown() {
+    this.#view.bannerMessage('3');
+    await this.#delay(1000);
+    this.#view.bannerMessage('2');
+    await this.#delay(1000);
+    this.#view.bannerMessage('1');
+    await this.#delay(1000);
+    this.#view.bannerMessage('TENTEM NÃO PISCAR!');
+    await this.#delay(1000);
+    this.#view.hideBanner();
   }
 }

@@ -95,6 +95,10 @@ body {
   font-size: 1.6rem;
   padding: 20px;
   z-index: 10;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  max-width: 600px;
   animation: fadeInAnimation 3s ease-in-out infinite;
 }
 
