@@ -23,7 +23,7 @@ export default class Controller {
       if (data.status === 'IMPORT READY') {
         worker.postMessage(this.#getVideoFrame());
         this.#view.loadingFirstDetection();
-      } else if (data.status === 'READY') {
+      } else if (data.status === 'IMAGE DETECTION READY') {
         isReady = true;
         this.#view.enableGame();
       } else if (data.status === 'ERROR') {
@@ -34,11 +34,14 @@ export default class Controller {
         if (!this.#running) return;
         this.loop();
       } else if (data.status === 'BLINK') {
-        // this.#view.hideBanner();
         const { blinked, who } = data;
         if (blinked) console.log('BLINKED', who);
+        if (who === 'ambos') {
+          this.#view.bannerMessage('Ambos os jogadores piscaram!');
+        } else {
+          this.#view.bannerMessage(`O jogador da ${who} piscou!`);
+        }
         this.#stop();
-        // this.loop();
       }
     };
 

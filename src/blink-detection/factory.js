@@ -10,8 +10,8 @@ export default class Factory {
     );
 
     // const tfWorkerURL = new URL();
-    const worker = new Worker(tfWorkerURL, { type: 'module' });
     const camera = await Camera.initialize({ querySelector: '#video-frame' });
+    const worker = new Worker(tfWorkerURL, { type: 'module' });
 
     return Controller.initialize({
       worker,

@@ -100,8 +100,21 @@ body {
 
 .header {
   width: 95%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
+}
+
+.header #btnHelp {
+  justify-self: start;
+}
+
+.header .header__title {
+  justify-self: center;
+}
+
+.header #btn-start {
+  justify-self: end;
 }
 
 .header__title {
@@ -120,4 +133,14 @@ dialog {
   border-radius: 20px;
   border: 0.1px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#btn-start__text {
+  font-size: 1.3rem;
+}
+
+#btn-start {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

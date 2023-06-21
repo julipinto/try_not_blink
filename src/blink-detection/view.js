@@ -1,5 +1,7 @@
 export default class View {
   #btnStart = document.querySelector('#btn-start');
+  #btnStartText = document.querySelector('#btn-start__text');
+
   #banner = document.querySelector('#banner');
   #iconD = document.querySelector('#icon-button');
   #videoFrameCanvas = document.createElement('canvas');
@@ -31,6 +33,7 @@ export default class View {
 
   enableGame() {
     this.#btnStart.disabled = false;
+    this.setIconPlay();
     this.hideBanner();
   }
 
@@ -50,6 +53,7 @@ export default class View {
   }
 
   setIconPlay() {
+    this.#btnStartText.textContent = 'Jogar';
     this.#openEye();
     this.#iconD.setAttribute(
       'd',
@@ -58,6 +62,7 @@ export default class View {
   }
 
   setIconPause() {
+    this.#btnStartText.textContent = 'Pausar';
     this.#closeEye();
     this.#iconD.setAttribute(
       'd',

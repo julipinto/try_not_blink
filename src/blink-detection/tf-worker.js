@@ -20,7 +20,8 @@ onmessage = async ({ data: video }) => {
 
   if (!firstDetection) {
     firstDetection = true;
-    postMessage({ status: 'READY' });
+    postMessage({ status: 'IMAGE DETECTION READY' });
+    console.log('face detection ready!');
     return;
   }
 
@@ -30,6 +31,7 @@ onmessage = async ({ data: video }) => {
   }
 
   if (!result) {
+    console.log('no blink');
     postMessage({ status: 'NO BLINK' });
     return;
   }

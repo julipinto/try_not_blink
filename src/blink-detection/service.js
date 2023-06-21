@@ -1,5 +1,5 @@
 import { debouncer } from '../utils/debouncer.js';
-const shouldRun = debouncer({ timerDelay: 350 });
+const shouldRun = debouncer({ timerDelay: 100 });
 
 const EAR_THRESHOLD = 0.27;
 
@@ -42,7 +42,10 @@ export default class Service {
 
     // IF PREDICTIONS != 2, ALERT USER
     if (predictions.length !== 2)
-      return { error: 'Não foi encontrado 2 faces para o jogo.' };
+      return {
+        error:
+          'Não foi encontrado 2 faces para o jogo.\nAperte Jogar novamente com os dois jogadores\nem tela para começar.',
+      };
 
     let mostLeft = Math.min(
       predictions[0].annotations.noseTip[0][0],
@@ -66,19 +69,19 @@ export default class Service {
       if (!shouldRun()) continue;
 
       let isLeft = mostLeft === prediction.annotations.noseTip[0][0];
-      blinks.add(isLeft ? 'left' : 'right');
+      blinks.add(isLeft ? 'esquerda' : 'direita');
     }
 
     if (blinks.size === 2) {
       return { blinked: true, who: 'both' };
     }
 
-    if (blinks.has('left')) {
-      return { blinked: true, who: 'left' };
+    if (blinks.has('esquerda')) {
+      return { blinked: true, who: 'esquerda' };
     }
 
-    if (blinks.has('right')) {
-      return { blinked: true, who: 'right' };
+    if (blinks.has('direita')) {
+      return { blinked: true, who: 'direita' };
     }
 
     return false;
