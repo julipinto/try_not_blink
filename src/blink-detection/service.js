@@ -2,7 +2,6 @@ import { debouncer } from '../utils/debouncer.js';
 const shouldRun = debouncer({ timerDelay: 100 });
 
 const EAR_THRESHOLD = 0.27;
-// const EAR_THRESHOLD = 0.4;
 
 export default class Service {
   #faceLandmarksDetection;
@@ -74,7 +73,7 @@ export default class Service {
     }
 
     if (blinks.size === 2) {
-      return { blinked: true, who: 'both' };
+      return { blinked: true, who: 'ambos' };
     }
 
     if (blinks.has('esquerda')) {
