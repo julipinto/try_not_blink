@@ -1,3 +1,9 @@
+/***************************
+Autor: Erick Wendel
+Repositório: https://github.com/ErickWendel/semana-javascript-expert07/blob/main/classes/class04/pages/video-player/src/service.js
+Esse código foi uma adaptação do código acima
+******************************/
+
 import { debouncer } from '../utils/debouncer.js';
 const shouldRun = debouncer({ timerDelay: 100 });
 

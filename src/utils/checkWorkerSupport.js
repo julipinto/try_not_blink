@@ -7,7 +7,8 @@ function checkWorkerSupport() {
   };
 
   try {
-    new Worker('blob://', tester).terminate();
+    const testWorker = new Worker('blob://', tester);
+    testWorker.terminate();
   } finally {
     return supports;
   }

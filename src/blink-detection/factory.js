@@ -1,6 +1,7 @@
 import Controller from './controller.js';
 import View from './view.js';
 import Camera from '../utils/Camera.js';
+import { getWorker } from './getWorker.js';
 
 export default class Factory {
   static async initialize() {
@@ -9,9 +10,8 @@ export default class Factory {
       document.location
     );
 
-    // const tfWorkerURL = new URL();
     const camera = await Camera.initialize({ querySelector: '#video-frame' });
-    const worker = new Worker(tfWorkerURL, { type: 'module' });
+    const worker = await getWorker(tfWorkerURL, { type: 'module' });
 
     return Controller.initialize({
       worker,

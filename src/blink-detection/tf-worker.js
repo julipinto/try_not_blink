@@ -1,3 +1,9 @@
+/***************************
+Autor: Erick Wendel
+Repositório: https://github.com/ErickWendel/semana-javascript-expert07/blob/main/classes/class04/pages/video-player/src/worker.js
+Esse código foi uma adaptação do código acima
+******************************/
+
 import 'https://unpkg.com/@tensorflow/tfjs-core@2.4.0/dist/tf-core.js';
 import 'https://unpkg.com/@tensorflow/tfjs-converter@2.4.0/dist/tf-converter.js';
 import 'https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.4.0/dist/tf-backend-webgl.js';
