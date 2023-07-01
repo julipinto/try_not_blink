@@ -6,8 +6,10 @@ Esse código foi uma adaptação do código acima
 
 import Service from './service.js';
 
+import { checkWorkerSupport } from '../utils/checkWorkerSupport.js';
+
 export async function getWorker(url, options) {
-  if (supportsWorkerType()) {
+  if (checkWorkerSupport()) {
     console.log('initializing esm workers');
     const worker = new Worker(url, options);
     return worker;
